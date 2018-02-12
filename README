@@ -1,0 +1,95 @@
+	Tema a fost rezolvata integral,fiind implementate task-urile necesare.
+	Durata de lucru a fost de aproximativ o saptamana.
+
+			CITIREA
+
+	Elementele sunt citite treptat , unul cate unul , identificandu -se
+totodata tipul acestuia prin intermediul functiei FINDTYPE.
+	Functia FINDTYPE primeste ca parametru un sir si returneaza tipul 
+elementului citit.
+	Am folosit conventia :
+	- 1 pentru cuvinte(word);
+	- 2 pentru caractere(char);
+	- 3 pentru numere(number).
+
+			CODIFICAREA
+
+	In functie de tipul elementului se incepe codificarea.
+
+			ENCODER_WORD
+
+	Fisierul contine functiile necesare prelucrarii tipului 1, adica al 
+cuvintelor:
+	- cmmdc = calculeaza cel mai mare divizor comun diferit de el insusi;
+	- reverse = inverseaza elementele unui sir ;
+	- encode_word - care foloseste reverse si cmmdc ;
+			- se calculeza duvizorul;
+			- se verifica daca sirul contine cifre; 
+			-in caz pozitiv,primele d caractere (d fiind cmmdc) 
+			sunt mutate la coada sirului , iar sirul ramas 
+			este inversat folosind functia reverse.  
+			-in caz negativ,doar primele d caractere sunt mutate 
+			la coada .
+	* Mutarea se face cu ajutorul unui sir secundar-intermediar second,
+care faciliteaza copierea si alocarea prin intermediul functie strdup si cu 
+ajutorul functiei strcpy.
+
+			ENCODER_CHARMOD
+
+	Fisierul contine functiile necesare prelucrarii tipului 2, adica al 
+caracterelor:
+	- frequence =primeste ca parametru un sir de caractere si determina 
+		     frecventa fiecarui caracter in sir cu scopul de a 
+	determina ulterior prima aparitie a elementului minim si maxim;
+	- max = determina maximul dintr un sir;
+	- min = determina minimul dintr un sir;
+	- encode_charmod = functia principala care inglobeaza functiile 
+			anterioare; in interiorul ei:
+		- se determina vectorul de frecventa;
+		- se parcurge vectorul de frecventa si se determina maximul 
+	si minimul si pozitiile corespunzatoare acestora;
+		- se parcurge sirul iar in momentul intalnirii primului 
+	caracter cu numar maxim/ minim de elemente se retine si se iese din 
+	strcutura;
+		- valorile retinute vor fi alipite in ordinea precizata:
+			- valoare maxima;
+			- caracterul la care s a ajuns ;
+			- valoare minima.
+	* Se face precizarea ca operatiile anterioare se executa doar daca 
+caracterul citit nu este primul element din sir ; in acest caz se face alipirea.
+
+			ENCODER_NUMBER
+
+	Fisierul contine functia necesara prelucrarii tipului 3, adica al 
+numerelor:
+	- permuta cifrele numarului pana cand :
+		- se intalneste numarul maxim rezultat in urma rotirii cifrelor, 
+		pentru numerele pozitive;
+		- se intalneste numarul minim rezultat in urma rotirii cifrelor 
+		valorii absolute a numarului,pentru numerele negative.
+
+			SORTAREA
+
+	Sirul obtinut dupa codificare se va imparti:
+		- in n componente egale daca lungimea solutiei1(nr)%n==0;
+		- in n-1 componente egale si o alta componenta mai lunga daca
+		lungimea solutiei1(nr)%n!=0.
+	Sortarea se face utilizand :
+		- o variabila auxiliara aux pentru interschimbarea 
+		complexitatilor;
+		- functia strdup pentru alocare si copiere in cadrul 
+		structurii de vectori;
+		- compararea lexicografica se face prin intermediul funtiei 
+		strcmp si cu ajutorul vectorului chng.
+
+			REARANJARE
+	Functia concateneaza la un sir vectorii aflati pe pozitiile i si n-i-1,
+respectand algoritmul cerut.
+
+
+
+
+
+
+
+
